@@ -30,18 +30,16 @@
 		{
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnImport = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnFolder = new System.Windows.Forms.Button();
             this.btnUpdateThis = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.workerImport = new System.ComponentModel.BackgroundWorker();
-            this.workerUpdateThis = new System.ComponentModel.BackgroundWorker();
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.btnUpdateData = new System.Windows.Forms.Button();
-            this.workerUpdateDate = new System.ComponentModel.BackgroundWorker();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.btnUpdateAuto = new System.Windows.Forms.Button();
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // textBox1
@@ -49,7 +47,7 @@
             this.textBox1.Location = new System.Drawing.Point(14, 452);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(806, 25);
+            this.textBox1.Size = new System.Drawing.Size(697, 25);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = "D:\\test";
             // 
@@ -64,16 +62,16 @@
             this.btnImport.UseVisualStyleBackColor = true;
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
             // 
-            // button2
+            // btnFolder
             // 
-            this.button2.Location = new System.Drawing.Point(827, 452);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(86, 29);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "폴더";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnFolder.Location = new System.Drawing.Point(827, 452);
+            this.btnFolder.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnFolder.Name = "btnFolder";
+            this.btnFolder.Size = new System.Drawing.Size(86, 29);
+            this.btnFolder.TabIndex = 3;
+            this.btnFolder.Text = "폴더";
+            this.btnFolder.UseVisualStyleBackColor = true;
+            this.btnFolder.Click += new System.EventHandler(this.btnFolder_Click);
             // 
             // btnUpdateThis
             // 
@@ -119,20 +117,6 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(205, 25);
             this.dateTimePicker1.TabIndex = 7;
             // 
-            // workerImport
-            // 
-            this.workerImport.WorkerReportsProgress = true;
-            this.workerImport.WorkerSupportsCancellation = true;
-            this.workerImport.DoWork += new System.ComponentModel.DoWorkEventHandler(this.workerImport_DoWork);
-            this.workerImport.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.workerImport_RunWorkerCompleted);
-            // 
-            // workerUpdateThis
-            // 
-            this.workerUpdateThis.WorkerReportsProgress = true;
-            this.workerUpdateThis.WorkerSupportsCancellation = true;
-            this.workerUpdateThis.DoWork += new System.ComponentModel.DoWorkEventHandler(this.workerUpdateThis_DoWork);
-            this.workerUpdateThis.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.workerUpdateThis_RunWorkerCompleted);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -151,55 +135,60 @@
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
-            // button4
+            // btnTest
             // 
-            this.button4.Location = new System.Drawing.Point(505, 484);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(86, 29);
-            this.button4.TabIndex = 10;
-            this.button4.Text = "test set";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Visible = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.btnTest.Location = new System.Drawing.Point(505, 484);
+            this.btnTest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(86, 29);
+            this.btnTest.TabIndex = 10;
+            this.btnTest.Text = "test set";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Visible = false;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
-            // btnUpdateData
+            // btnUpdateAuto
             // 
-            this.btnUpdateData.Location = new System.Drawing.Point(827, 483);
-            this.btnUpdateData.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnUpdateData.Name = "btnUpdateData";
-            this.btnUpdateData.Size = new System.Drawing.Size(178, 29);
-            this.btnUpdateData.TabIndex = 11;
-            this.btnUpdateData.Text = "날짜변경 자동";
-            this.btnUpdateData.UseVisualStyleBackColor = true;
-            this.btnUpdateData.Click += new System.EventHandler(this.btnUpdateDate_Click);
+            this.btnUpdateAuto.Location = new System.Drawing.Point(827, 482);
+            this.btnUpdateAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnUpdateAuto.Name = "btnUpdateAuto";
+            this.btnUpdateAuto.Size = new System.Drawing.Size(178, 29);
+            this.btnUpdateAuto.TabIndex = 11;
+            this.btnUpdateAuto.Text = "날짜변경 자동";
+            this.btnUpdateAuto.UseVisualStyleBackColor = true;
+            this.btnUpdateAuto.Click += new System.EventHandler(this.btnUpdateAuto_Click);
             // 
-            // workerUpdateDate
+            // btnClear
             // 
-            this.workerUpdateDate.WorkerReportsProgress = true;
-            this.workerUpdateDate.WorkerSupportsCancellation = true;
-            this.workerUpdateDate.DoWork += new System.ComponentModel.DoWorkEventHandler(this.workerUpdateDate_DoWork);
-            this.workerUpdateDate.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.workerUpdateDate_RunWorkerCompleted);
+            this.btnClear.Location = new System.Drawing.Point(735, 452);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(86, 29);
+            this.btnClear.TabIndex = 12;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1019, 670);
-            this.Controls.Add(this.btnUpdateData);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.btnUpdateAuto);
+            this.Controls.Add(this.btnTest);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.btnUpdateThis);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnFolder);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.textBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
-            this.Text = "사진날짜변경";
+            this.Text = "Picture Date Change";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -210,18 +199,16 @@
 
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Button btnImport;
-		private System.Windows.Forms.Button button2;
+		private System.Windows.Forms.Button btnFolder;
 		private System.Windows.Forms.Button btnUpdateThis;
 		private System.Windows.Forms.ListView listView1;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.DateTimePicker dateTimePicker1;
-		private System.ComponentModel.BackgroundWorker workerImport;
-        private System.ComponentModel.BackgroundWorker workerUpdateThis;
+		private System.Windows.Forms.DateTimePicker dateTimePicker1; 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button btnUpdateData;
-        private System.ComponentModel.BackgroundWorker workerUpdateDate;
+        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnUpdateAuto; 
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
