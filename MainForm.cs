@@ -252,7 +252,7 @@ namespace ModPhoto
 					long lDate;
 					if (long.TryParse(date, out lDate))
 					{
-						if (lDate > 0 && lDate > 20000000 && lDate < 20230000)
+						if (lDate > 0 && lDate > 20000000 && lDate < 20990000)
 						{
 							var year = Convert.ToInt32(date.Substring(0, 4));
 							var month = Convert.ToInt32(date.Substring(4, 2));
@@ -401,16 +401,93 @@ namespace ModPhoto
 		#endregion
 
 
-		private void btnTest_Click(object sender, EventArgs e)
+		private void btnFileName_Click(object sender, EventArgs e)
 		{
-			string path = @"C:\Users\ssd\Pictures\hp\IMG_0001.JPG";
-			DateTime dt = new DateTime(1999, 4, 3);
-			//FileInfo fi = new FileInfo("l:\\DCIM\\100EOS5D\\hp\\IMG_9465.JPG");
-			richTextBox1.Text += path + "->" + dt.ToString() + "\n";
-			//fi.CreationTime = dateTimePicker1.Value;
-			File.SetCreationTime(path, dt);
-			File.SetLastWriteTime(path, dt);
-			File.SetLastAccessTime(path, dt);
+			try
+			{
+				foreach (ListViewItem item in listView1.SelectedItems)
+				{
+					string fullPath = currentDirPath + "\\" + item.Text;
+					if (File.Exists(fullPath))
+					{
+						FileInfo fileInfo = null;
+						string fileName;
+						bool tagFlag = false;
+
+						if (fullPath.ToLower().Contains(".jpg"))
+						{
+							ExifFile exifFile = ExifFile.Read(fullPath);
+							if (exifFile.Properties.ContainsKey(ExifTag.DateTime))
+							{
+								fileName = ((DateTime)exifFile.Properties[ExifTag.DateTime].Value).ToString("yyyyMMdd_HHmmss");
+								fileInfo = new FileInfo(fullPath);
+								fileInfo.MoveTo(Path.Combine(fileInfo.DirectoryName, $"{fileName}.{fileInfo.Extension.ToLower()}"));
+								tagFlag = true;
+							}
+							if (!tagFlag)
+							{
+								fileInfo = new FileInfo(fullPath);
+								fileName = ((DateTime)fileInfo.CreationTime).ToString("yyyyMMdd_HHmmss");
+								fileInfo.MoveTo(Path.Combine(fileInfo.DirectoryName, $"{fileName}.{fileInfo.Extension.ToLower()}"));
+							}
+						}
+                        else
+						{
+							fileName = ((DateTime)fileInfo.CreationTime).ToString("yyyyMMdd_HHmmss");
+							fileInfo.MoveTo(Path.Combine(fileInfo.DirectoryName, $"{fileName}.{fileInfo.Extension.ToLower()}"));
+						}
+						//else
+						//{
+						//try
+						//{
+						//	ExifFile exifFile = ExifFile.Read(fullPath);
+						//	if (exifFile.Properties.ContainsKey(ExifTag.DateTime))
+						//	{
+						//		var fileName = ((DateTime)exifFile.Properties[ExifTag.DateTime].Value).ToString("yyyyMMdd_HHmmss");
+						//		var fileInfo = new FileInfo(fullPath);
+						//		fileInfo.MoveTo(Path.Combine(fileInfo.DirectoryName, $"{fileName}.{fileInfo.Extension}"));
+						//		exifFile.Properties[ExifTag.DateTime].Value = dt;
+						//		item.SubItems[1].Text = dt.ToString();
+						//		tagFlag = true;
+						//	}
+
+						//	if (exifFile.Properties.ContainsKey(ExifTag.DateTimeDigitized))
+						//	{
+						//		exifFile.Properties[ExifTag.DateTimeDigitized].Value = dt;
+						//		item.SubItems[2].Text = dt.ToString();
+						//		tagFlag = true;
+						//	}
+
+						//	if (exifFile.Properties.ContainsKey(ExifTag.DateTimeOriginal))
+						//	{
+						//		exifFile.Properties[ExifTag.DateTimeOriginal].Value = dt;
+						//		item.SubItems[3].Text = dt.ToString();
+						//		tagFlag = true;
+						//	}
+
+						//	if (tagFlag)
+						//	{
+						//		exifFile.Save(fullPath);
+						//	}
+						//}
+						//catch (Exception ex) { }
+						//}
+					}
+				}
+			}
+			catch (Exception exception)
+			{
+				MessageBox.Show("예외발생 : " + exception.Message, "경고");
+			}
+
+			//string path = @"C:\Users\ssd\Pictures\hp\IMG_0001.JPG";
+			//DateTime dt = new DateTime(1999, 4, 3);
+			////FileInfo fi = new FileInfo("l:\\DCIM\\100EOS5D\\hp\\IMG_9465.JPG");
+			//richTextBox1.Text += path + "->" + dt.ToString() + "\n";
+			////fi.CreationTime = dateTimePicker1.Value;
+			//File.SetCreationTime(path, dt);
+			//File.SetLastWriteTime(path, dt);
+			//File.SetLastAccessTime(path, dt);
 		}
 
         #region Update

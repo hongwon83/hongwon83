@@ -37,7 +37,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.btnTest = new System.Windows.Forms.Button();
+            this.btnFileName = new System.Windows.Forms.Button();
             this.btnUpdateAuto = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -135,17 +135,16 @@
             this.richTextBox1.TabIndex = 9;
             this.richTextBox1.Text = "";
             // 
-            // btnTest
+            // btnFileName
             // 
-            this.btnTest.Location = new System.Drawing.Point(505, 484);
-            this.btnTest.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(86, 29);
-            this.btnTest.TabIndex = 10;
-            this.btnTest.Text = "test set";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Visible = false;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            this.btnFileName.Location = new System.Drawing.Point(673, 482);
+            this.btnFileName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnFileName.Name = "btnFileName";
+            this.btnFileName.Size = new System.Drawing.Size(148, 29);
+            this.btnFileName.TabIndex = 10;
+            this.btnFileName.Text = "date to fileName";
+            this.btnFileName.UseVisualStyleBackColor = true;
+            this.btnFileName.Click += new System.EventHandler(this.btnFileName_Click);
             // 
             // btnUpdateAuto
             // 
@@ -176,7 +175,7 @@
             this.ClientSize = new System.Drawing.Size(1019, 670);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnUpdateAuto);
-            this.Controls.Add(this.btnTest);
+            this.Controls.Add(this.btnFileName);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePicker1);
@@ -206,7 +205,7 @@
 		private System.Windows.Forms.DateTimePicker dateTimePicker1; 
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnFileName;
         private System.Windows.Forms.Button btnUpdateAuto; 
         private System.Windows.Forms.Button btnClear;
     }
